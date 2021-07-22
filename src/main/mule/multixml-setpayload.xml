@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="145c0978-f6fd-4087-b483-e317237e1cf2" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="multixml-setpayloadFlow" doc:id="af24131b-67c7-4f8e-955a-590c9fd8da5c" >
+		<http:listener doc:name="Listener" doc:id="5ae62e29-c056-457c-8c24-1a04cdc77af0" config-ref="HTTP_Listener_config" path="/multixml"/>
+		<logger level="INFO" doc:name="Logger" doc:id="671c6520-ab14-436e-ac67-3cb9224547d5" message="Accepts multixml data"/>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="0ca3d517-590b-49ed-9d86-2ff1cf92967b" />
+		<logger level="INFO" doc:name="Logger" doc:id="a67eaf3a-3f2e-4ca1-a3f5-20b77e2adc0b" message="#[payload]"/>
+	</flow>
+</mule>
